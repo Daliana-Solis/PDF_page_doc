@@ -28,6 +28,10 @@ for index, row in df.iterrows():
     #add line (add x1, y1, x2,y2) start to end coordinates
     pdf.line(10, 21, 200, 21)
 
+    pages = int(row['Pages'])-1
+    for _ in range(pages):
+        pdf.add_page()
+
 
 
 
