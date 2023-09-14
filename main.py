@@ -26,8 +26,9 @@ for index, row in df.iterrows():
     pdf.set_text_color(100,100,100)
     pdf.cell(w=0, h=12, txt=row['Topic'],align='L', ln=1)
 
-    #add line (add x1, y1, x2,y2) start to end coordinates
-    pdf.line(10, 21, 200, 21)
+    #adding lines on page
+    for y_val in range(21, 290, 10):
+        pdf.line(10, y_val, 200, y_val)
 
     #Set footer
     #add 270 breaklines
@@ -37,6 +38,7 @@ for index, row in df.iterrows():
     pdf.cell(w=0, h=10, txt=row['Topic'],align='R', ln=1)
 
 
+    #for the rest of the pages (not the main page) for the topic
     pages = int(row['Pages'])-1
     for _ in range(pages):
         pdf.add_page()
@@ -44,6 +46,10 @@ for index, row in df.iterrows():
         pdf.set_font(family="Times", style="I", size=8)
         pdf.set_text_color(100, 100, 100)
         pdf.cell(w=0, h=10, txt=row['Topic'], align='R', ln=1)
+
+        # adding lines on page
+        for y_val in range(21, 290, 10):
+            pdf.line(10, y_val, 200, y_val)
 
 pdf.cell(w=0, h=12, txt='Hello', align='L', ln=1, border=1)
 
